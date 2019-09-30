@@ -19,7 +19,7 @@ class NetService {
 
   async call(method, url, params, headers, oauth = false) {
     if (!oauth) {
-      url = "/api/" + version + url;
+      url = window.location.origin + "/api/" + version + url;
     }
     let options = {};
     if (method === "GET" || method === "HEAD") {

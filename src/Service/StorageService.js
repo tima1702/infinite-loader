@@ -16,6 +16,12 @@ class StorageService {
     return false;
   }
 
+  getAccessTokenType() {
+    const str = localStorage.getItem("APP:AccessToken");
+    if (str) return JSON.parse(str).token_type;
+    return false;
+  }
+
   // return true is token valid
   checkAccessToken() {
     const str = localStorage.getItem("APP:AccessToken");

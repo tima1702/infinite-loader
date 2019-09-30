@@ -1,4 +1,5 @@
 import NetService from "./NetService";
+import StorageService from "./StorageService";
 
 class ApiService {
   async login(username, password, venueID) {
@@ -24,6 +25,19 @@ class ApiService {
       },
       { "Content-Type": "application/json" },
       true
+    );
+  }
+
+  async getData(startIndex, stopIndex) {
+    const token = StorageService.getAccessToken();
+    const tokenType = StorageService.getAccessTokenType();
+    return NetService.get(
+      "/events/range/" + startIndex + "/" + stopIndex,
+      {},
+      {
+        "Content-Type": "application/json",
+        Authorization: tokenType + " " + token
+      }
     );
   }
 }

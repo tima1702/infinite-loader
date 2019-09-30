@@ -34,20 +34,10 @@ export const login = values => (dispatch, getState) => {
           dispatch({ type: LOGIN_SUCCESS });
         })
         .catch(e => {
-          if (e.status === 500) {
-            alert("error on server");
-          } else {
-            alert("checkYourData");
-          }
           dispatch({ type: LOGIN_FAILURE, e });
         });
     })
     .catch(e => {
-      if (e.status === 500) {
-        alert("error on server");
-      } else {
-        alert("checkYourData");
-      }
       dispatch({ type: LOGIN_FAILURE, e });
     });
 };
