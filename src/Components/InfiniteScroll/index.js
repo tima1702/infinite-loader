@@ -46,13 +46,12 @@ function InfiniteScroll() {
   const isRowLoaded = ({ index }) => !hasNextPage || index < list.length;
 
   const rowRenderer = ({ index, key, style }) => {
-    let isLoading, id, title, startDate, stopDate;
+    let isLoading, title, startDate, stopDate;
 
     if (!isRowLoaded({ index })) {
       isLoading = true;
     } else {
       isLoading = false;
-      id = list[index]['ID'];
       title = list[index]['Title'];
       startDate = moment(list[index]['Start']).format('MM.DD.YY hh:mm A');
       stopDate = moment(list[index]['End']).format('MM.DD.YY hh:mm A');
@@ -77,9 +76,7 @@ function InfiniteScroll() {
         ) : (
           <>
             <div className="card ">
-              <div className="card-title">
-                {id} {title}
-              </div>
+              <div className="card-title">{title}</div>
               <div className="card-date">
                 <Icon type="calendar" className="card-date-icon" />
                 <div>{startDate}</div>

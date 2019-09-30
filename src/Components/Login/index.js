@@ -23,14 +23,7 @@ function Login(props) {
     venueID: '',
   };
 
-  const mockValues = {
-    username: 'admin555@scanblox.com',
-    password: 'Pass5Adm5',
-    venueID: '1',
-  };
-
-  // TODO replace data
-  const [inputs, setInputs] = useState(mockValues);
+  const [inputs, setInputs] = useState(defaultValues);
 
   const handleSubmit = (event) => {
     if (event) {
