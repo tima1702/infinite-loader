@@ -1,36 +1,71 @@
+import { message } from 'antd';
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGGED
-} from "./constants";
+  LOGGED,
+  LOGOUT,
+} from './constants';
 
-import { message } from "antd";
+import StorageService from '../../Service/StorageService';
+
 const initialState = {
   loggedIn: false,
-  failedLogin: false
+  failedLogin: false,
+  blockButton: false,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case LOGIN_REQUEST: {
-      return { ...state, loggedIn: false, failedLogin: false };
+      message.loading('Action in progress..', 0);
+      return {
+        ...state,
+        loggedIn: false,
+        failedLogin: false,
+        blockButton: true,
+      };
     }
     case LOGIN_SUCCESS: {
-      return { ...state, loggedIn: true, failedLogin: false };
+      message.destroy();
+      return {
+        ...state,
+        loggedIn: true,
+        failedLogin: false,
+        blockButton: false,
+      };
     }
     case LOGGED: {
-      return { ...state, loggedIn: true, failedLogin: false };
+      return {
+        ...state,
+        loggedIn: true,
+        failedLogin: false,
+        blockButton: false,
+      };
+    }
+    case LOGOUT: {
+      StorageService.clearToken();
+      return {
+        ...state,
+        loggedIn: false,
+        failedLogin: false,
+        blockButton: false,
+      };
     }
     case LOGIN_FAILURE: {
+      message.destroy();
       if (action.e.status === 500) {
-        message.error("Error on server.");
+        message.error('Error on server.');
       } else {
-        message.error("Error! Please check your input and try again.");
+        message.error('Error! Please check your input and try again.');
       }
 
-      console.log("LOGIN_FAILURE", action.e);
-      return { ...state, loggedIn: false, failedLogin: true };
+      return {
+        ...state,
+        loggedIn: false,
+        failedLogin: true,
+        blockButton: false,
+      };
     }
     default:
       return state;

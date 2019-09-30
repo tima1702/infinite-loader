@@ -2,57 +2,62 @@
   --topBlockHeight: 100px;
 }
 
+.blockFocus:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
 .parent-block {
   height: calc(100vh - var(--topBlockHeight)) !important;
 }
 
 .top-block {
-  height: var(--topBlockHeight)
+  height: var(--topBlockHeight);
 }
 
 .loaded {
   text-align: center;
   padding: 5px;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   font-weight: bold;
-  background: rgba(0, 0, 0, .050);
+  background: rgba(0, 0, 0, 0.05);
 
-  border: 1px solid rgba(0, 0, 0, .125);
+  border: 1px solid rgba(0, 0, 0, 0.125);
   margin-bottom: 10px;
 }
 
 .card {
-  /* outline: 1px solid grey; */
   width: 100%;
-  height: 63px;
-  -webkit-box-shadow: 0px 8px 4px -7px rgba(0, 0, 0, .200);
-  -moz-box-shadow: 0px 8px 4px -7px rgba(0, 0, 0, .200);
-  box-shadow: 0px 8px 4px -7px rgba(0, 0, 0, .200);
-
+  height: 60px;
+  -webkit-box-shadow: 0px 8px 4px -7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 8px 4px -7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 4px -7px rgba(0, 0, 0, 0.2);
 }
 
 .card-date {
   padding: 3px;
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, .030);
+  background: rgba(0, 0, 0, 0.03);
+  height: 100%;
 }
 
 .card-date-icon {
   width: 16px;
   margin-right: 10px;
+  margin-top: 3px;
 }
-
 
 .card-title {
   padding: 3px;
   font-weight: bold;
   margin: 0 !important;
   text-align: center;
-  background: rgba(0, 0, 0, .050);
-  border-bottom: 1px solid rgba(0, 0, 0, .125);
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
-
 
 .card-date-separator {
   margin: 0 10px;
@@ -75,7 +80,7 @@
   position: absolute;
   left: 6px;
   width: 13px;
-  background: rgba(0, 0, 0, .256);
+  background: rgba(0, 0, 0, 0.256);
   animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 
@@ -107,23 +112,22 @@
   }
 }
 
-
 /* SCROLLBAR */
 
 .scroll::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, .005);
+  background-color: rgba(0, 0, 0, 0.005);
 }
 
 .scroll::-webkit-scrollbar {
   width: 6px;
-  background-color: rgba(0, 0, 0, .005);
+  background-color: rgba(0, 0, 0, 0.005);
 }
 
 .scroll::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  background-color: rgba(0, 0, 0, .150);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.15);
   cursor: pointer;
 }

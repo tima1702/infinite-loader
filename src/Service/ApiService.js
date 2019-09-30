@@ -1,30 +1,29 @@
-import NetService from "./NetService";
-import StorageService from "./StorageService";
-
+import NetService from './NetService';
+import StorageService from './StorageService';
 class ApiService {
   async login(username, password, venueID) {
     return NetService.post(
-      "/users/login",
+      '/users/login',
       {
         Username: username,
         Password: password,
-        VenueID: venueID
+        VenueID: venueID,
       },
-      { "Content-Type": "application/json" }
+      { 'Content-Type': 'application/json' },
     );
   }
   async getAccessToken(client_id, username, password, client_secret) {
     return NetService.post(
-      "/oauth/token",
+      '/oauth/token',
       {
-        grant_type: "password",
+        grant_type: 'password',
         client_id,
         username,
         password,
-        client_secret
+        client_secret,
       },
-      { "Content-Type": "application/json" },
-      true
+      { 'Content-Type': 'application/json' },
+      true,
     );
   }
 
@@ -32,12 +31,12 @@ class ApiService {
     const token = StorageService.getAccessToken();
     const tokenType = StorageService.getAccessTokenType();
     return NetService.get(
-      "/events/range/" + startIndex + "/" + stopIndex,
+      '/events/range/' + startIndex + '/' + stopIndex,
       {},
       {
-        "Content-Type": "application/json",
-        Authorization: tokenType + " " + token
-      }
+        'Content-Type': 'application/json',
+        Authorization: tokenType + ' ' + token,
+      },
     );
   }
 }

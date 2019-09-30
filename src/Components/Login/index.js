@@ -1,57 +1,53 @@
-import React, { useState, useCallback } from "react";
-import { Button, Form } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
-import { useSelector, useDispatch } from "react-redux";
-
-import ApiService from "../../Service/ApiService";
-import StorageService from "../../Service/StorageService";
-
-import * as auth from "../../Reducers/Auth/actions";
+import React, { useState, useCallback } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector, useDispatch } from 'react-redux';
+import './index.css';
+import * as auth from '../../Reducers/Auth/actions';
 
 function Login(props) {
-  const { failedLogin } = useSelector(state => state.auth);
+  const { blockButton } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
-  const logout = useCallback(
-    values => {
+  const login = useCallback(
+    (values) => {
       dispatch(auth.login(values));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const defaultValues = {
-    username: "",
-    password: "",
-    venueID: ""
+    username: '',
+    password: '',
+    venueID: '',
   };
 
   const mockValues = {
-    username: "admin555@scanblox.com",
-    password: "Pass5Adm5",
-    venueID: "1"
+    username: 'admin555@scanblox.com',
+    password: 'Pass5Adm5',
+    venueID: '1',
   };
 
   // TODO replace data
   const [inputs, setInputs] = useState(mockValues);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
-      logout({
+      login({
         username: inputs.username,
         password: inputs.password,
-        venueID: inputs.venueID
+        venueID: inputs.venueID,
       });
     }
   };
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     event.persist();
-    setInputs(inputs => ({
+    setInputs((inputs) => ({
       ...inputs,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
   };
 
@@ -92,7 +88,11 @@ function Login(props) {
             required
           />
         </Form.Group>
-        <Button variant="primary" type="login">
+        <Button
+          variant="primary"
+          type="login"
+          className="btn btn-primary btn-lg btn-block"
+          disabled={blockButton}>
           Login
         </Button>
       </Form>

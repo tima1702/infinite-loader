@@ -1,18 +1,16 @@
-import React, { useState, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import { connect } from "react-redux";
-import "./App.css";
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import * as auth from "./Reducers/Auth/actions";
-import Login from "./Components/Login";
-import InfiniteScroll from "./Components/InfiniteScroll";
+import './App.css';
+import * as auth from './Reducers/Auth/actions';
+import Login from './Components/Login';
+import InfiniteScroll from './Components/InfiniteScroll';
+import StorageService from './Service/StorageService';
 
-import StorageService from "./Service/StorageService";
-
-const userLogged = false;
-const mapStateToProps = state => ({
-  isLogin: state.auth.loggedIn
+const mapStateToProps = (state) => ({
+  isLogin: state.auth.loggedIn,
 });
 
 function AuthProtect(Component) {
@@ -26,12 +24,12 @@ function AuthProtect(Component) {
         return (
           <Redirect
             to={{
-              pathname: "/login"
+              pathname: '/login',
             }}
           />
         );
       }
-    }
+    },
   );
 }
 function AuthUnProtect(Component) {
@@ -45,12 +43,12 @@ function AuthUnProtect(Component) {
         return (
           <Redirect
             to={{
-              pathname: "/infinite-scroll"
+              pathname: '/infinite-scroll',
             }}
           />
         );
       }
-    }
+    },
   );
 }
 
@@ -60,7 +58,7 @@ function Home() {
       return (
         <Redirect
           to={{
-            pathname: "/infinite-scroll"
+            pathname: '/infinite-scroll',
           }}
         />
       );
